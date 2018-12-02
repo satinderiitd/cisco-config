@@ -1,0 +1,5 @@
+Upload the Viral config in Cisco CML modeling tool
+Copy the config of various device
+
+Limitation with Cisco Viral
+Not able to simulate EVPN multihoming, viral device crash on enabling multihoming, basic EVPN works well.
