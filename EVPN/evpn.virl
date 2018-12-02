@@ -1,0 +1,3634 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
+    <node name="nx-osv9000-1" type="SIMPLE" subtype="NX-OSv 9000" location="93,409" ipv4="192.168.0.2">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:31 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-1
+vdc nx-osv9000-1 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-7
+  no switchport
+  mac-address fa16.3e00.0001
+  ip address 10.0.0.9/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-8
+  no switchport
+  mac-address fa16.3e00.0002
+  ip address 10.0.0.13/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-11
+  no switchport
+  mac-address fa16.3e00.0003
+  ip address 10.0.0.65/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description to nx-osv9000-12
+  no switchport
+  mac-address fa16.3e00.0004
+  ip address 10.0.0.69/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.221/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.2/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.2
+router bgp 1
+  router-id 192.168.0.2
+  address-family ipv4 unicast
+    network 192.168.0.2/32
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.9" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.13" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.65" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.69" netPrefixLenV4="30"/>
+    </node>
+    <node name="nx-osv9000-2" type="SIMPLE" subtype="NX-OSv 9000" location="212,410" ipv4="192.168.0.3">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:32 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-2
+vdc nx-osv9000-2 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-7
+  no switchport
+  mac-address fa16.3e00.0006
+  ip address 10.0.0.17/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-8
+  no switchport
+  mac-address fa16.3e00.0007
+  ip address 10.0.0.21/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-12
+  no switchport
+  mac-address fa16.3e00.0008
+  ip address 10.0.0.78/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description to nx-osv9000-11
+  no switchport
+  mac-address fa16.3e00.0009
+  ip address 10.0.0.74/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.226/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.3/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.3
+router bgp 1
+  router-id 192.168.0.3
+  address-family ipv4 unicast
+    network 192.168.0.3/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.17" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.21" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.78" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.74" netPrefixLenV4="30"/>
+    </node>
+    <node name="nx-osv9000-3" type="SIMPLE" subtype="NX-OSv 9000" location="385,416" ipv4="192.168.0.4">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:32 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-3
+vdc nx-osv9000-3 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-7
+  no switchport
+  mac-address fa16.3e00.000b
+  ip address 10.0.0.25/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-8
+  no switchport
+  mac-address fa16.3e00.000c
+  ip address 10.0.0.29/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-13
+  no switchport
+  mac-address fa16.3e00.000d
+  ip address 10.0.0.82/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description to nx-osv9000-14
+  no switchport
+  mac-address fa16.3e00.000e
+  ip address 10.0.0.86/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.227/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.4/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.4
+router bgp 1
+  router-id 192.168.0.4
+  address-family ipv4 unicast
+    network 192.168.0.4/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.25" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.29" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.82" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.86" netPrefixLenV4="30"/>
+    </node>
+    <node name="nx-osv9000-4" type="SIMPLE" subtype="NX-OSv 9000" location="557,416" ipv4="192.168.0.5">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:33 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-4
+vdc nx-osv9000-4 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-7
+  no switchport
+  mac-address fa16.3e00.0010
+  ip address 10.0.0.33/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-8
+  no switchport
+  mac-address fa16.3e00.0011
+  ip address 10.0.0.37/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-14
+  no switchport
+  mac-address fa16.3e00.0012
+  ip address 10.0.0.94/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description to nx-osv9000-13
+  no switchport
+  mac-address fa16.3e00.0013
+  ip address 10.0.0.90/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.228/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.5/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.5
+router bgp 1
+  router-id 192.168.0.5
+  address-family ipv4 unicast
+    network 192.168.0.5/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.33" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.37" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.94" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.90" netPrefixLenV4="30"/>
+    </node>
+    <node name="nx-osv9000-5" type="SIMPLE" subtype="NX-OSv 9000" location="700,418" ipv4="192.168.0.6">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:33 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-5
+vdc nx-osv9000-5 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-7
+  no switchport
+  mac-address fa16.3e00.0015
+  ip address 10.0.0.41/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-8
+  no switchport
+  mac-address fa16.3e00.0016
+  ip address 10.0.0.45/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-9
+  no switchport
+  mac-address fa16.3e00.0017
+  ip address 10.0.0.49/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description Ethernet1/4
+  no switchport
+  mac-address fa16.3e00.0018
+  no shutdown
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.229/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.6/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.6
+router bgp 1
+  router-id 192.168.0.6
+  address-family ipv4 unicast
+    network 192.168.0.6/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.41" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.45" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.49" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4"/>
+    </node>
+    <node name="nx-osv9000-6" type="SIMPLE" subtype="NX-OSv 9000" location="855,418" ipv4="192.168.0.7">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:32 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-6
+vdc nx-osv9000-6 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-7
+  no switchport
+  mac-address fa16.3e00.001a
+  ip address 10.0.0.53/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-8
+  no switchport
+  mac-address fa16.3e00.001b
+  ip address 10.0.0.57/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-9
+  no switchport
+  mac-address fa16.3e00.001c
+  ip address 10.0.0.61/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description Ethernet1/4
+  no switchport
+  mac-address fa16.3e00.001d
+  no shutdown
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.230/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.7/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.7
+router bgp 1
+  router-id 192.168.0.7
+  address-family ipv4 unicast
+    network 192.168.0.7/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.53" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.57" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.61" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4"/>
+    </node>
+    <node name="nx-osv9000-7" type="SIMPLE" subtype="NX-OSv 9000" location="207,170" ipv4="192.168.0.8">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:31 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-7
+vdc nx-osv9000-7 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-1
+  no switchport
+  mac-address fa16.3e00.001f
+  ip address 10.0.0.10/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-2
+  no switchport
+  mac-address fa16.3e00.0020
+  ip address 10.0.0.18/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-3
+  no switchport
+  mac-address fa16.3e00.0021
+  ip address 10.0.0.26/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description to nx-osv9000-4
+  no switchport
+  mac-address fa16.3e00.0022
+  ip address 10.0.0.34/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/5
+  description to nx-osv9000-5
+  no switchport
+  mac-address fa16.3e00.0023
+  ip address 10.0.0.42/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/6
+  description to nx-osv9000-6
+  no switchport
+  mac-address fa16.3e00.0024
+  ip address 10.0.0.54/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/7
+  description Ethernet1/7
+  no switchport
+  mac-address fa16.3e00.0025
+  no shutdown
+
+interface Ethernet1/8
+  description Ethernet1/8
+  no switchport
+  mac-address fa16.3e00.0026
+  no shutdown
+
+interface Ethernet1/9
+  description Ethernet1/9
+  no switchport
+  mac-address fa16.3e00.0027
+  no shutdown
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.231/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.8/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.8
+router bgp 1
+  router-id 192.168.0.8
+  address-family ipv4 unicast
+    network 192.168.0.8/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.10" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.18" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.26" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.34" netPrefixLenV4="30"/>
+        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.42" netPrefixLenV4="30"/>
+        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.54" netPrefixLenV4="30"/>
+        <interface id="6" name="Ethernet1/7"/>
+        <interface id="7" name="Ethernet1/8"/>
+        <interface id="8" name="Ethernet1/9"/>
+    </node>
+    <node name="nx-osv9000-8" type="SIMPLE" subtype="NX-OSv 9000" location="552,164" ipv4="192.168.0.9">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:32 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-8
+vdc nx-osv9000-8 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-1
+  no switchport
+  mac-address fa16.3e00.0029
+  ip address 10.0.0.14/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-2
+  no switchport
+  mac-address fa16.3e00.002a
+  ip address 10.0.0.22/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to nx-osv9000-3
+  no switchport
+  mac-address fa16.3e00.002b
+  ip address 10.0.0.30/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+  description to nx-osv9000-4
+  no switchport
+  mac-address fa16.3e00.002c
+  ip address 10.0.0.38/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/5
+  description to nx-osv9000-5
+  no switchport
+  mac-address fa16.3e00.002d
+  ip address 10.0.0.46/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/6
+  description to nx-osv9000-6
+  no switchport
+  mac-address fa16.3e00.002e
+  ip address 10.0.0.58/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/7
+  description Ethernet1/7
+  no switchport
+  mac-address fa16.3e00.002f
+  no shutdown
+
+interface Ethernet1/8
+  description Ethernet1/8
+  no switchport
+  mac-address fa16.3e00.0030
+  no shutdown
+
+interface Ethernet1/9
+  description Ethernet1/9
+  no switchport
+  mac-address fa16.3e00.0031
+  no shutdown
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.232/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.9/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.9
+router bgp 1
+  router-id 192.168.0.9
+  address-family ipv4 unicast
+    network 192.168.0.9/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.10
+    remote-as 1
+    description iBGP peer nx-osv9000-9
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.14" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.22" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.30" netPrefixLenV4="30"/>
+        <interface id="3" name="Ethernet1/4" ipv4="10.0.0.38" netPrefixLenV4="30"/>
+        <interface id="4" name="Ethernet1/5" ipv4="10.0.0.46" netPrefixLenV4="30"/>
+        <interface id="5" name="Ethernet1/6" ipv4="10.0.0.58" netPrefixLenV4="30"/>
+        <interface id="6" name="Ethernet1/7"/>
+        <interface id="7" name="Ethernet1/8"/>
+        <interface id="8" name="Ethernet1/9"/>
+    </node>
+    <node name="nx-osv9000-9" type="SIMPLE" subtype="NX-OSv 9000" location="702,37" ipv4="192.168.0.10">
+        <extensions>
+            <entry key="AutoNetkit.ospf_area" type="String">0</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:32 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-9
+vdc nx-osv9000-9 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-5
+  no switchport
+  mac-address fa16.3e00.0033
+  ip address 10.0.0.50/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-6
+  no switchport
+  mac-address fa16.3e00.0034
+  ip address 10.0.0.62/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description to server-1
+  no switchport
+  mac-address fa16.3e00.0035
+  ip address 10.0.0.5/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/4
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.233/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.10/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.10
+router bgp 1
+  router-id 192.168.0.10
+  address-family ipv4 unicast
+    network 192.168.0.10/32
+  neighbor 192.168.0.2
+    remote-as 1
+    description iBGP peer nx-osv9000-1
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.3
+    remote-as 1
+    description iBGP peer nx-osv9000-2
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.4
+    remote-as 1
+    description iBGP peer nx-osv9000-3
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.5
+    remote-as 1
+    description iBGP peer nx-osv9000-4
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.6
+    remote-as 1
+    description iBGP peer nx-osv9000-5
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.7
+    remote-as 1
+    description iBGP peer nx-osv9000-6
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.8
+    remote-as 1
+    description iBGP peer nx-osv9000-7
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.9
+    remote-as 1
+    description iBGP peer nx-osv9000-8
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.11
+    remote-as 1
+    description iBGP peer nx-osv9000-11
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.12
+    remote-as 1
+    description iBGP peer nx-osv9000-12
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.13
+    remote-as 1
+    description iBGP peer nx-osv9000-13
+    update-source loopback0
+    address-family ipv4 unicast
+  neighbor 192.168.0.14
+    remote-as 1
+    description iBGP peer nx-osv9000-14
+    update-source loopback0
+    address-family ipv4 unicast
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.50" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.62" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3" ipv4="10.0.0.5" netPrefixLenV4="30"/>
+    </node>
+    <node name="server-1" type="SIMPLE" subtype="server" location="893,36">
+        <extensions>
+            <entry key="config" type="String">#cloud-config
+bootcmd:
+- ln -s -t /etc/rc.d /etc/rc.local
+hostname: server-1
+manage_etc_hosts: true
+runcmd:
+- start ttyS0
+- systemctl start getty@ttyS0.service
+- systemctl start rc-local
+- sed -i '/^\s*PasswordAuthentication\s\+no/d' /etc/ssh/sshd_config
+- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- service ssh restart
+- service sshd restart
+users:
+- default
+- gecos: User configured by VIRL Configuration Engine 0.23.10
+  lock-passwd: false
+  name: cisco
+  plain-text-passwd: cisco
+  shell: /bin/bash
+  ssh-authorized-keys:
+  - VIRL-USER-SSH-PUBLIC-KEY
+  sudo: ALL=(ALL) ALL
+write_files:
+- path: /etc/init/ttyS0.conf
+  owner: root:root
+  content: |
+    # ttyS0 - getty
+    # This service maintains a getty on ttyS0 from the point the system is
+    # started until it is shut down again.
+    start on stopped rc or RUNLEVEL=[12345]
+    stop on runlevel [!12345]
+    respawn
+    exec /sbin/getty -L 115200 ttyS0 vt102
+  permissions: '0644'
+- path: /etc/systemd/system/dhclient@.service
+  content: |
+    [Unit]
+    Description=Run dhclient on %i interface
+    After=network.target
+    [Service]
+    Type=oneshot
+    ExecStart=/sbin/dhclient %i -pf /var/run/dhclient.%i.pid -lf /var/lib/dhclient/dhclient.%i.lease
+    RemainAfterExit=yes
+  owner: root:root
+  permissions: '0644'
+- path: /etc/rc.local
+  owner: root:root
+  permissions: '0755'
+  content: |-
+    #!/bin/sh
+    ifconfig eth1 up 10.0.0.6 netmask 255.255.255.252
+    route add -net 10.0.0.0/8 gw 10.0.0.5 dev eth1
+    route add -net 192.168.0.0/28 gw 10.0.0.5 dev eth1
+    exit 0
+</entry>
+        </extensions>
+        <interface id="0" name="eth1" ipv4="10.0.0.6" netPrefixLenV4="30"/>
+    </node>
+    <node name="nx-osv9000-11" type="SIMPLE" subtype="NX-OSv 9000" location="93,507" vmImage="NX-OSv 9000 [d3f8a81c-d7a1-4b09-bc7f-6bfbb39b1477]" ipv4="192.168.0.11">
+        <extensions>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:31 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-11
+vdc nx-osv9000-11 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-1
+  no switchport
+  mac-address fa16.3e00.0037
+  ip address 10.0.0.66/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-2
+  no switchport
+  mac-address fa16.3e00.0038
+  ip address 10.0.0.73/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description Ethernet1/3
+  no switchport
+  mac-address fa16.3e00.0039
+  no shutdown
+
+interface Ethernet1/4
+  description Ethernet1/4
+  no switchport
+  mac-address fa16.3e00.003a
+  no shutdown
+
+interface Ethernet1/5
+  description Ethernet1/5
+  no switchport
+  mac-address fa16.3e00.003b
+  no shutdown
+
+interface Ethernet1/6
+  description Ethernet1/6
+  no switchport
+  mac-address fa16.3e00.003c
+  no shutdown
+
+interface Ethernet1/7
+  description Ethernet1/7
+  no switchport
+  mac-address fa16.3e00.003d
+  no shutdown
+
+interface Ethernet1/8
+  description Ethernet1/8
+  no switchport
+  mac-address fa16.3e00.003e
+  no shutdown
+
+interface Ethernet1/9
+  description Ethernet1/9
+  no switchport
+  mac-address fa16.3e00.003f
+  no shutdown
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.222/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.11/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.11
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.66" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.73" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3"/>
+        <interface id="3" name="Ethernet1/4"/>
+        <interface id="4" name="Ethernet1/5"/>
+        <interface id="5" name="Ethernet1/6"/>
+        <interface id="6" name="Ethernet1/7"/>
+        <interface id="7" name="Ethernet1/8"/>
+        <interface id="8" name="Ethernet1/9"/>
+    </node>
+    <node name="nx-osv9000-12" type="SIMPLE" subtype="NX-OSv 9000" location="212,508" vmImage="NX-OSv 9000 [d3f8a81c-d7a1-4b09-bc7f-6bfbb39b1477]" ipv4="192.168.0.12">
+        <extensions>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:32 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-12
+vdc nx-osv9000-12 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-2
+  no switchport
+  mac-address fa16.3e00.0041
+  ip address 10.0.0.77/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-1
+  no switchport
+  mac-address fa16.3e00.0042
+  ip address 10.0.0.70/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description Ethernet1/3
+  no switchport
+  mac-address fa16.3e00.0043
+  no shutdown
+
+interface Ethernet1/4
+  description Ethernet1/4
+  no switchport
+  mac-address fa16.3e00.0044
+  no shutdown
+
+interface Ethernet1/5
+  description Ethernet1/5
+  no switchport
+  mac-address fa16.3e00.0045
+  no shutdown
+
+interface Ethernet1/6
+  description Ethernet1/6
+  no switchport
+  mac-address fa16.3e00.0046
+  no shutdown
+
+interface Ethernet1/7
+  description Ethernet1/7
+  no switchport
+  mac-address fa16.3e00.0047
+  no shutdown
+
+interface Ethernet1/8
+  description Ethernet1/8
+  no switchport
+  mac-address fa16.3e00.0048
+  no shutdown
+
+interface Ethernet1/9
+  description Ethernet1/9
+  no switchport
+  mac-address fa16.3e00.0049
+  no shutdown
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.223/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.12/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.12
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.77" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.70" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3"/>
+        <interface id="3" name="Ethernet1/4"/>
+        <interface id="4" name="Ethernet1/5"/>
+        <interface id="5" name="Ethernet1/6"/>
+        <interface id="6" name="Ethernet1/7"/>
+        <interface id="7" name="Ethernet1/8"/>
+        <interface id="8" name="Ethernet1/9"/>
+    </node>
+    <node name="nx-osv9000-13" type="SIMPLE" subtype="NX-OSv 9000" location="384,508" vmImage="NX-OSv 9000 [d3f8a81c-d7a1-4b09-bc7f-6bfbb39b1477]" ipv4="192.168.0.13">
+        <extensions>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:31 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-13
+vdc nx-osv9000-13 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-3
+  no switchport
+  mac-address fa16.3e00.004b
+  ip address 10.0.0.81/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-4
+  no switchport
+  mac-address fa16.3e00.004c
+  ip address 10.0.0.89/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description Ethernet1/3
+  no switchport
+  mac-address fa16.3e00.004d
+  no shutdown
+
+interface Ethernet1/4
+  description Ethernet1/4
+  no switchport
+  mac-address fa16.3e00.004e
+  no shutdown
+
+interface Ethernet1/5
+  description Ethernet1/5
+  no switchport
+  mac-address fa16.3e00.004f
+  no shutdown
+
+interface Ethernet1/6
+  description Ethernet1/6
+  no switchport
+  mac-address fa16.3e00.0050
+  no shutdown
+
+interface Ethernet1/7
+  description Ethernet1/7
+  no switchport
+  mac-address fa16.3e00.0051
+  no shutdown
+
+interface Ethernet1/8
+  description Ethernet1/8
+  no switchport
+  mac-address fa16.3e00.0052
+  no shutdown
+
+interface Ethernet1/9
+  description Ethernet1/9
+  no switchport
+  mac-address fa16.3e00.0053
+  no shutdown
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.224/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.13/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.13
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.81" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.89" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3"/>
+        <interface id="3" name="Ethernet1/4"/>
+        <interface id="4" name="Ethernet1/5"/>
+        <interface id="5" name="Ethernet1/6"/>
+        <interface id="6" name="Ethernet1/7"/>
+        <interface id="7" name="Ethernet1/8"/>
+        <interface id="8" name="Ethernet1/9"/>
+    </node>
+    <node name="nx-osv9000-14" type="SIMPLE" subtype="NX-OSv 9000" location="561,510" vmImage="NX-OSv 9000 [d3f8a81c-d7a1-4b09-bc7f-6bfbb39b1477]" ipv4="192.168.0.14">
+        <extensions>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Thu Oct 25 17:58:32 2018
+
+version 7.0(3)I7(1)
+hostname nx-osv9000-14
+vdc nx-osv9000-14 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature telnet
+feature ospf
+feature bgp
+
+no password strength-check
+username admin password 5 $1$KuOSBsvW$Cy0TSD..gEBGBPjzpDgf51  role network-admin
+username adminbackup password 5 !  role network-operator
+username cisco password 5 $1$Nk7ZkwH0$fyiRmMMfIheqE3BqvcL0C1  role network-operator
+username cisco role network-admin
+username lab password 5 $1$buoy/oqy$.EXQz8rCn72ii8qtdldj00  role network-admin
+ip domain-lookup
+snmp-server user lab network-admin auth md5 0x5ceb414591539ee35159fca86fdfa101 priv 0x5ceb414591539ee35159fca86fdfa101 localizedkey
+snmp-server user admin network-admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey
+snmp-server user cisco network-operator auth md5 0x55b3c64a53fb95518e75358ee75e82e9 priv 0x55b3c64a53fb95518e75358ee75e82e9 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+hardware forwarding unicast trace
+
+
+interface Ethernet1/1
+  description to nx-osv9000-4
+  no switchport
+  mac-address fa16.3e00.0055
+  ip address 10.0.0.93/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/2
+  description to nx-osv9000-3
+  no switchport
+  mac-address fa16.3e00.0056
+  ip address 10.0.0.85/30
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/3
+  description Ethernet1/3
+  no switchport
+  mac-address fa16.3e00.0057
+  no shutdown
+
+interface Ethernet1/4
+  description Ethernet1/4
+  no switchport
+  mac-address fa16.3e00.0058
+  no shutdown
+
+interface Ethernet1/5
+  description Ethernet1/5
+  no switchport
+  mac-address fa16.3e00.0059
+  no shutdown
+
+interface Ethernet1/6
+  description Ethernet1/6
+  no switchport
+  mac-address fa16.3e00.005a
+  no shutdown
+
+interface Ethernet1/7
+  description Ethernet1/7
+  no switchport
+  mac-address fa16.3e00.005b
+  no shutdown
+
+interface Ethernet1/8
+  description Ethernet1/8
+  no switchport
+  mac-address fa16.3e00.005c
+  no shutdown
+
+interface Ethernet1/9
+  description Ethernet1/9
+  no switchport
+  mac-address fa16.3e00.005d
+  no shutdown
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  description OOB Management
+  vrf member management
+  ip address 10.255.1.225/16
+
+interface loopback0
+  description Loopback
+  ip address 192.168.0.14/32
+  ip router ospf 1 area 0.0.0.0
+line console
+line vty
+router ospf 1
+  router-id 192.168.0.14
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet1/1" ipv4="10.0.0.93" netPrefixLenV4="30"/>
+        <interface id="1" name="Ethernet1/2" ipv4="10.0.0.85" netPrefixLenV4="30"/>
+        <interface id="2" name="Ethernet1/3"/>
+        <interface id="3" name="Ethernet1/4"/>
+        <interface id="4" name="Ethernet1/5"/>
+        <interface id="5" name="Ethernet1/6"/>
+        <interface id="6" name="Ethernet1/7"/>
+        <interface id="7" name="Ethernet1/8"/>
+        <interface id="8" name="Ethernet1/9"/>
+    </node>
+    <annotations/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[1]" src="/virl:topology/virl:node[7]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[1]" src="/virl:topology/virl:node[7]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[1]" src="/virl:topology/virl:node[7]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[1]" src="/virl:topology/virl:node[7]/virl:interface[5]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[1]" src="/virl:topology/virl:node[7]/virl:interface[6]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[7]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[2]" src="/virl:topology/virl:node[2]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[4]" src="/virl:topology/virl:node[4]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[8]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[3]" src="/virl:topology/virl:node[9]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[6]/virl:interface[3]" src="/virl:topology/virl:node[9]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[12]/virl:interface[1]" src="/virl:topology/virl:node[2]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[13]/virl:interface[1]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[14]/virl:interface[1]" src="/virl:topology/virl:node[4]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[4]" src="/virl:topology/virl:node[11]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[12]/virl:interface[2]" src="/virl:topology/virl:node[1]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[4]" src="/virl:topology/virl:node[13]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[14]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[9]/virl:interface[3]" src="/virl:topology/virl:node[10]/virl:interface[1]"/>
+</topology>
